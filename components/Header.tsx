@@ -23,12 +23,16 @@ export const Header: React.FC<HeaderProps> = ({ language, setLanguage, t }) => {
   useEffect(() => {
     if (isMobileMenuOpen) {
       document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+      window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
     } else {
       document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
     }
 
     return () => {
       document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
     };
   }, [isMobileMenuOpen]);
 
@@ -134,7 +138,7 @@ export const Header: React.FC<HeaderProps> = ({ language, setLanguage, t }) => {
 
       {/* Mobile Navigation Overlay */}
       <div
-        className={`md:hidden fixed inset-0 bg-white z-40 flex flex-col items-center justify-center space-y-8 overflow-y-auto px-6 transition-transform duration-300 ease-in-out ${
+        className={`md:hidden fixed inset-0 h-dvh w-full bg-white z-40 flex flex-col items-center justify-center space-y-8 overflow-y-auto px-6 transition-transform duration-300 ease-in-out ${
           isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
