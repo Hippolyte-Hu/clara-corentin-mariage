@@ -6,12 +6,9 @@ interface HeroProps {
 }
 
 const backgroundImages = [
-  // Image 1: French Chateau / Garden (France)
-  "https://images.unsplash.com/photo-1503913702591-64d8583487d6?q=80&w=1920&auto=format&fit=crop", 
-  // Image 2: Olive Grove / Mediterranean Landscape (Sicile)
-  "https://images.unsplash.com/photo-1529636798458-92182e662485?q=80&w=1920&auto=format&fit=crop",
-  // Image 3: Lemons / Dolce Vita vibe (Sicile)
-  "https://images.unsplash.com/photo-1555986510-9c2b8c560e29?q=80&w=1920&auto=format&fit=crop"
+  'linear-gradient(135deg, rgba(44, 58, 55, 0.92), rgba(94, 130, 122, 0.72)), radial-gradient(circle at top left, rgba(212, 175, 55, 0.25), transparent 35%), url("https://images.unsplash.com/photo-1503913702591-64d8583487d6?auto=format&fit=crop&w=1600&q=80")',
+  'linear-gradient(135deg, rgba(44, 58, 55, 0.9), rgba(118, 83, 35, 0.42)), radial-gradient(circle at top right, rgba(255, 255, 255, 0.12), transparent 30%), url("https://images.unsplash.com/photo-1529636798458-92182e662485?auto=format&fit=crop&w=1600&q=80")',
+  'linear-gradient(135deg, rgba(44, 58, 55, 0.9), rgba(212, 175, 55, 0.2)), radial-gradient(circle at bottom left, rgba(255, 255, 255, 0.08), transparent 30%), url("https://images.unsplash.com/photo-1555986510-9c2b8c560e29?auto=format&fit=crop&w=1600&q=80")',
 ];
 
 export const Hero: React.FC<HeroProps> = ({ t }) => {
@@ -43,19 +40,15 @@ export const Hero: React.FC<HeroProps> = ({ t }) => {
   return (
     <section id="home" className="relative h-screen flex items-center justify-center overflow-hidden bg-sage-900">
       {/* Background Slideshow */}
-      {backgroundImages.map((img, index) => (
+      {backgroundImages.map((backgroundImage, index) => (
         <div
           key={index}
-          className={`absolute inset-0 z-0 transition-opacity duration-1000 ease-in-out ${
+          className={`absolute inset-0 z-0 transition-opacity duration-1000 ease-in-out bg-center bg-cover ${
             index === currentImageIndex ? 'opacity-100' : 'opacity-0'
           }`}
+          style={{ backgroundImage }}
+          aria-label={`${t.hero.backgroundAlt} ${index + 1}`}
         >
-           <img
-            src={img}
-            alt={`${t.hero.backgroundAlt} ${index + 1}`}
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-black/40 mix-blend-multiply"></div>
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
         </div>
       ))}
