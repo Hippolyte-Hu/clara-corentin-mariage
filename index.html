@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clara & Corentin | Le Mariage</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              sage: {
+                50: '#f4f7f6',
+                100: '#e3ebe9',
+                200: '#c5d8d3',
+                300: '#9dbbb4',
+                400: '#7a9e96',
+                500: '#5e827a', // Primary Sage
+                600: '#486861',
+                700: '#3b544f',
+                800: '#324541',
+                900: '#2c3a37',
+              },
+              gold: {
+                100: '#fbf5d8',
+                200: '#f5e8ad',
+                300: '#eed67c',
+                400: '#e6c04f',
+                500: '#d4af37', // Primary Gold
+                600: '#b38b29',
+                700: '#8f6823',
+                800: '#765323',
+              },
+              cream: '#FAFAF9',
+            },
+            fontFamily: {
+              serif: ['"Playfair Display"', 'serif'],
+              sans: ['"Lato"', 'sans-serif'],
+            },
+          },
+        },
+      }
+    </script>
+    <style>
+      /* Smooth scrolling and padding for fixed header */
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 5rem; /* Account for the fixed header height */
+      }
+      
+      /* Custom Scrollbar for elegance */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #FAFAF9;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #9dbbb4;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #5e827a;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.4",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "lucide-react": "https://esm.sh/lucide-react@^0.574.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body class="bg-cream text-stone-700 antialiased">
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
