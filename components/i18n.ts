@@ -23,6 +23,12 @@ export const translations = {
       date: '20 Juin 2026',
       scrollLabel: 'Voir le programme',
       backgroundAlt: "Fond d'écran",
+      countdownLabels: {
+        days: 'Jours',
+        hours: 'Heures',
+        minutes: 'Minutes',
+        seconds: 'Secondes',
+      },
     },
     program: {
       title: 'Le Programme',
@@ -137,6 +143,12 @@ export const translations = {
       date: 'June 20, 2026',
       scrollLabel: 'View the schedule',
       backgroundAlt: 'Background image',
+      countdownLabels: {
+        days: 'Days',
+        hours: 'Hours',
+        minutes: 'Minutes',
+        seconds: 'Seconds',
+      },
     },
     program: {
       title: 'The Schedule',
@@ -251,6 +263,12 @@ export const translations = {
       date: '20 Giugno 2026',
       scrollLabel: 'Scopri il programma',
       backgroundAlt: 'Immagine di sfondo',
+      countdownLabels: {
+        days: 'Giorni',
+        hours: 'Ore',
+        minutes: 'Minuti',
+        seconds: 'Secondi',
+      },
     },
     program: {
       title: 'Il Programma',

@@ -86,7 +86,7 @@ export const Hero: React.FC<HeroProps> = ({ t }) => {
 
         {/* Countdown Component */}
         <div className="bg-white/10 backdrop-blur-md rounded-xl p-6 md:p-8 border border-white/20 inline-block shadow-2xl">
-          <Countdown targetDate="2026-06-20T14:00:00" />
+          <Countdown targetDate="2026-06-20T14:00:00" labels={t.hero.countdownLabels} />
         </div>
       </div>
       

@@ -2,26 +2,32 @@ import React, { useState, useEffect } from 'react';
 
 interface CountdownProps {
   targetDate: string;
+  labels: {
+    days: string;
+    hours: string;
+    minutes: string;
+    seconds: string;
+  };
 }
 
 interface TimeLeft {
-  jours: number;
-  heures: number;
+  days: number;
+  hours: number;
   minutes: number;
-  secondes: number;
+  seconds: number;
 }
 
-export const Countdown: React.FC<CountdownProps> = ({ targetDate }) => {
+export const Countdown: React.FC<CountdownProps> = ({ targetDate, labels }) => {
   const calculateTimeLeft = (): TimeLeft => {
     const difference = +new Date(targetDate) - +new Date();
-    let timeLeft: TimeLeft = { jours: 0, heures: 0, minutes: 0, secondes: 0 };
+    let timeLeft: TimeLeft = { days: 0, hours: 0, minutes: 0, seconds: 0 };
 
     if (difference > 0) {
       timeLeft = {
-        jours: Math.floor(difference / (1000 * 60 * 60 * 24)),
-        heures: Math.floor((difference / (1000 * 60 * 60)) % 24),
+        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
         minutes: Math.floor((difference / 1000 / 60) % 60),
-        secondes: Math.floor((difference / 1000) % 60),
+        seconds: Math.floor((difference / 1000) % 60),
       };
     }
     return timeLeft;
@@ -46,7 +52,7 @@ export const Countdown: React.FC<CountdownProps> = ({ targetDate }) => {
             {value < 10 ? `0${value}` : value}
           </span>
           <span className="text-[10px] md:text-xs uppercase tracking-widest mt-1 opacity-80">
-            {unit}
+            {labels[unit as keyof typeof labels]}
           </span>
         </div>
       ))}
