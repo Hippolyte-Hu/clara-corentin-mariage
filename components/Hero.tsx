@@ -63,10 +63,8 @@ export const Hero: React.FC<HeroProps> = ({ t }) => {
       {/* Content */}
       <div 
         className="relative z-10 text-center px-4 max-w-4xl mx-auto text-white"
-        data-aos="fade-up"
-        data-aos-duration="1500"
       >
-        <p className="text-lg md:text-2xl uppercase tracking-[0.3em] mb-4 font-light text-white/90">
+        <p className="text-lg md:text-2xl uppercase tracking-[0.3em] mb-4 font-light text-white/90 drop-shadow-sm">
           {t.hero.announcement}
         </p>
         <h1 className="font-serif text-5xl md:text-7xl lg:text-9xl mb-6 font-medium drop-shadow-lg">
@@ -74,11 +72,11 @@ export const Hero: React.FC<HeroProps> = ({ t }) => {
         </h1>
         
         {/* Heritage Subtitle */}
-        <p className="font-serif italic text-xl md:text-2xl text-white/90 mb-8 tracking-wide">
+        <p className="font-serif italic text-xl md:text-2xl text-white/90 mb-8 tracking-wide drop-shadow-sm">
           {t.hero.subtitle}
         </p>
 
-        <div className="flex items-center justify-center gap-4 text-xl md:text-3xl font-light tracking-wide mb-12">
+        <div className="flex items-center justify-center gap-4 text-xl md:text-3xl font-light tracking-wide mb-12 text-white/95 drop-shadow-sm">
           <span className="border-t border-white/50 w-12 md:w-24"></span>
           <span>{t.hero.date}</span>
           <span className="border-t border-white/50 w-12 md:w-24"></span>
