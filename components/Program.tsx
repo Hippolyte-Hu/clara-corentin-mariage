@@ -1,40 +1,24 @@
 import React from 'react';
 import { Landmark, Church, Wine, Music } from 'lucide-react';
 
-const events = [
-  {
-    time: '14:00',
-    title: 'Mairie',
-    description: 'Rendez-vous à la Mairie du 11ème arrondissement pour le mariage civil.',
-    icon: <Landmark className="w-8 h-8 text-sage-500" />,
-  },
-  {
-    time: '16:00',
-    title: 'Cérémonie Laïque',
-    description: 'Échange des vœux dans les jardins du Domaine de Longchamp.',
-    icon: <Church className="w-8 h-8 text-sage-500" />,
-  },
-  {
-    time: '17:30',
-    title: 'Vin d\'Honneur',
-    description: 'Cocktail, photos et lancer de bouquet.',
-    icon: <Wine className="w-8 h-8 text-sage-500" />,
-  },
-  {
-    time: '20:00',
-    title: 'Dîner & Soirée',
-    description: 'Repas gastronomique suivi d\'une nuit de folie sur le dancefloor.',
-    icon: <Music className="w-8 h-8 text-sage-500" />,
-  },
-];
+interface ProgramProps {
+  t: any;
+}
 
-export const Program: React.FC = () => {
+export const Program: React.FC<ProgramProps> = ({ t }) => {
+  const events = t.program.events;
+  const eventIcons = {
+    landmark: <Landmark className="w-8 h-8 text-sage-500" />,
+    church: <Church className="w-8 h-8 text-sage-500" />,
+    wine: <Wine className="w-8 h-8 text-sage-500" />,
+    music: <Music className="w-8 h-8 text-sage-500" />,
+  };
   return (
     <section id="program" className="py-20 bg-cream">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16" data-aos="fade-up">
-          <h2 className="font-serif text-4xl md:text-5xl text-sage-800 mb-4">Le Programme</h2>
-          <p className="text-stone-500 italic font-serif text-lg">Le déroulé de cette journée inoubliable</p>
+          <h2 className="font-serif text-4xl md:text-5xl text-sage-800 mb-4">{t.program.title}</h2>
+          <p className="text-stone-500 italic font-serif text-lg">{t.program.subtitle}</p>
           <div className="w-24 h-1 bg-gold-400 mx-auto mt-6"></div>
         </div>
 
@@ -64,7 +48,7 @@ export const Program: React.FC = () => {
 
                         {/* Icon Bubble */}
                         <div className="relative z-10 flex items-center justify-center w-16 h-16 rounded-full bg-white border-2 border-gold-400 shadow-md transform hover:scale-110 transition-transform duration-300">
-                            {event.icon}
+                            {eventIcons[event.icon as keyof typeof eventIcons]}
                         </div>
 
                         {/* Spacer for Flex Balance */}

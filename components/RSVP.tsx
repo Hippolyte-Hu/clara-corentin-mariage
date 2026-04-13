@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
 import { Send, CheckCircle } from 'lucide-react';
 
-export const RSVP: React.FC = () => {
+interface RSVPProps {
+  t: any;
+}
+
+export const RSVP: React.FC<RSVPProps> = ({ t }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     guests: '1',
-    attendance: 'oui',
+    attendance: 'yes',
     dietary: '',
     song: '',
   });
@@ -34,7 +38,7 @@ export const RSVP: React.FC = () => {
 
         if (response.ok || response.status === 404) { // 404 allowed here just for demo purposes so it doesn't break for the user immediately
             setStatus('success');
-            setFormData({ name: '', email: '', guests: '1', attendance: 'oui', dietary: '', song: '' });
+            setFormData({ name: '', email: '', guests: '1', attendance: 'yes', dietary: '', song: '' });
         } else {
             setStatus('error');
         }
@@ -51,23 +55,23 @@ export const RSVP: React.FC = () => {
         <div className="bg-white p-8 md:p-12 rounded-2xl shadow-xl border-t-8 border-gold-400" data-aos="zoom-in">
             
             <div className="text-center mb-10">
-                <span className="text-gold-500 font-serif italic text-xl">Répondez s'il vous plaît</span>
-                <h2 className="font-serif text-4xl text-sage-900 mt-2 mb-4">Serez-vous des nôtres ?</h2>
-                <p className="text-stone-500">Merci de confirmer votre présence avant le 1er Mai 2026</p>
+                <span className="text-gold-500 font-serif italic text-xl">{t.rsvp.eyebrow}</span>
+                <h2 className="font-serif text-4xl text-sage-900 mt-2 mb-4">{t.rsvp.title}</h2>
+                <p className="text-stone-500">{t.rsvp.subtitle}</p>
             </div>
 
             {status === 'success' ? (
                 <div className="text-center py-12 animate-fade-in">
                     <CheckCircle className="mx-auto text-green-600 mb-4" size={64} />
-                    <h3 className="text-2xl font-serif text-sage-800">Merci !</h3>
-                    <p className="text-stone-600 mt-2">Votre réponse a bien été enregistrée.</p>
-                    <button onClick={() => setStatus('idle')} className="mt-6 text-gold-600 underline hover:text-gold-800">Envoyer une autre réponse</button>
+                    <h3 className="text-2xl font-serif text-sage-800">{t.rsvp.successTitle}</h3>
+                    <p className="text-stone-600 mt-2">{t.rsvp.successMessage}</p>
+                    <button onClick={() => setStatus('idle')} className="mt-6 text-gold-600 underline hover:text-gold-800">{t.rsvp.sendAnother}</button>
                 </div>
             ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
-                            <label htmlFor="name" className="block text-sm font-bold text-sage-700 mb-2">Vos Noms & Prénoms</label>
+                            <label htmlFor="name" className="block text-sm font-bold text-sage-700 mb-2">{t.rsvp.labels.name}</label>
                             <input
                                 type="text"
                                 id="name"
@@ -76,11 +80,11 @@ export const RSVP: React.FC = () => {
                                 value={formData.name}
                                 onChange={handleChange}
                                 className="w-full px-4 py-3 rounded border border-sage-200 focus:border-gold-400 focus:ring-1 focus:ring-gold-400 outline-none transition-all bg-sage-50/30"
-                                placeholder="ex: Jean & Marie Dupont"
+                                placeholder={t.rsvp.placeholders.name}
                             />
                         </div>
                         <div>
-                            <label htmlFor="email" className="block text-sm font-bold text-sage-700 mb-2">Email</label>
+                            <label htmlFor="email" className="block text-sm font-bold text-sage-700 mb-2">{t.rsvp.labels.email}</label>
                             <input
                                 type="email"
                                 id="email"
@@ -89,14 +93,14 @@ export const RSVP: React.FC = () => {
                                 value={formData.email}
                                 onChange={handleChange}
                                 className="w-full px-4 py-3 rounded border border-sage-200 focus:border-gold-400 focus:ring-1 focus:ring-gold-400 outline-none transition-all bg-sage-50/30"
-                                placeholder="jean.dupont@email.com"
+                                placeholder={t.rsvp.placeholders.email}
                             />
                         </div>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
-                            <label htmlFor="attendance" className="block text-sm font-bold text-sage-700 mb-2">Présence</label>
+                            <label htmlFor="attendance" className="block text-sm font-bold text-sage-700 mb-2">{t.rsvp.labels.attendance}</label>
                             <select
                                 id="attendance"
                                 name="attendance"
@@ -104,12 +108,12 @@ export const RSVP: React.FC = () => {
                                 onChange={handleChange}
                                 className="w-full px-4 py-3 rounded border border-sage-200 focus:border-gold-400 focus:ring-1 focus:ring-gold-400 outline-none bg-white"
                             >
-                                <option value="oui">Avec plaisir !</option>
-                                <option value="non">Malheureusement non</option>
+                                <option value="yes">{t.rsvp.attendanceOptions.yes}</option>
+                                <option value="no">{t.rsvp.attendanceOptions.no}</option>
                             </select>
                         </div>
                         <div>
-                            <label htmlFor="guests" className="block text-sm font-bold text-sage-700 mb-2">Nombre d'adultes</label>
+                            <label htmlFor="guests" className="block text-sm font-bold text-sage-700 mb-2">{t.rsvp.labels.guests}</label>
                             <input
                                 type="number"
                                 id="guests"
@@ -124,7 +128,7 @@ export const RSVP: React.FC = () => {
                     </div>
 
                     <div>
-                        <label htmlFor="dietary" className="block text-sm font-bold text-sage-700 mb-2">Restrictions alimentaires</label>
+                        <label htmlFor="dietary" className="block text-sm font-bold text-sage-700 mb-2">{t.rsvp.labels.dietary}</label>
                         <input
                             type="text"
                             id="dietary"
@@ -132,12 +136,12 @@ export const RSVP: React.FC = () => {
                             value={formData.dietary}
                             onChange={handleChange}
                             className="w-full px-4 py-3 rounded border border-sage-200 focus:border-gold-400 focus:ring-1 focus:ring-gold-400 outline-none bg-sage-50/30"
-                            placeholder="Végétarien, allergies, sans gluten..."
+                            placeholder={t.rsvp.placeholders.dietary}
                         />
                     </div>
 
                     <div>
-                        <label htmlFor="song" className="block text-sm font-bold text-sage-700 mb-2">Une chanson qui vous fait danser ?</label>
+                        <label htmlFor="song" className="block text-sm font-bold text-sage-700 mb-2">{t.rsvp.labels.song}</label>
                         <input
                             type="text"
                             id="song"
@@ -145,7 +149,7 @@ export const RSVP: React.FC = () => {
                             value={formData.song}
                             onChange={handleChange}
                             className="w-full px-4 py-3 rounded border border-sage-200 focus:border-gold-400 focus:ring-1 focus:ring-gold-400 outline-none bg-sage-50/30"
-                            placeholder="Earth, Wind & Fire - September"
+                            placeholder={t.rsvp.placeholders.song}
                         />
                     </div>
 
@@ -154,15 +158,15 @@ export const RSVP: React.FC = () => {
                         disabled={status === 'submitting'}
                         className="w-full bg-sage-800 text-white font-serif text-lg py-4 rounded hover:bg-sage-700 transition-colors flex items-center justify-center gap-2 shadow-lg disabled:opacity-70 disabled:cursor-not-allowed mt-4"
                     >
-                        {status === 'submitting' ? 'Envoi...' : (
+                        {status === 'submitting' ? t.rsvp.submitting : (
                             <>
-                                Envoyer ma réponse <Send size={18} />
+                                {t.rsvp.submit} <Send size={18} />
                             </>
                         )}
                     </button>
                     
                     <p className="text-xs text-center text-stone-400 mt-4">
-                        * En cliquant, vous simulez l'envoi d'un email aux mariés.
+                        {t.rsvp.footnote}
                     </p>
                 </form>
             )}

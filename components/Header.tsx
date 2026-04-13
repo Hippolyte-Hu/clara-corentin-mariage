@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Heart } from 'lucide-react';
+import { Language, languageLabels } from './i18n';
 
-export const Header: React.FC = () => {
+interface HeaderProps {
+  language: Language;
+  setLanguage: (language: Language) => void;
+  t: any;
+}
+
+export const Header: React.FC<HeaderProps> = ({ language, setLanguage, t }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -14,12 +21,14 @@ export const Header: React.FC = () => {
   }, []);
 
   const navLinks = [
-    { name: 'Accueil', id: 'home' },
-    { name: 'Programme', id: 'program' },
-    { name: 'Lieu', id: 'map' },
-    { name: 'RSVP', id: 'rsvp' },
-    { name: 'Infos', id: 'faq' },
+    { name: t.nav.home, id: 'home' },
+    { name: t.nav.program, id: 'program' },
+    { name: t.nav.map, id: 'map' },
+    { name: t.nav.rsvp, id: 'rsvp' },
+    { name: t.nav.faq, id: 'faq' },
   ];
+
+  const languageOptions: Language[] = ['fr', 'en', 'it'];
 
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>, id: string) => {
     e.preventDefault();
@@ -70,12 +79,32 @@ export const Header: React.FC = () => {
               {link.name}
             </a>
           ))}
+
+          <div className="flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-2 py-1 backdrop-blur-sm">
+            {languageOptions.map((option) => (
+              <button
+                key={option}
+                type="button"
+                onClick={() => setLanguage(option)}
+                className={`rounded-full px-3 py-1 text-xs font-bold tracking-[0.2em] transition-colors ${
+                  language === option
+                    ? 'bg-gold-500 text-white'
+                    : isScrolled
+                      ? 'text-stone-600 hover:bg-sage-100'
+                      : 'text-white/90 hover:bg-white/10'
+                }`}
+              >
+                {languageLabels[option]}
+              </button>
+            ))}
+          </div>
+
           <a
             href="#rsvp"
             onClick={(e) => scrollToSection(e, 'rsvp')}
             className="px-5 py-2 bg-gold-500 text-white font-serif italic rounded-full hover:bg-gold-600 transition-transform transform hover:scale-105 shadow-lg cursor-pointer"
           >
-            Répondre
+            {t.nav.reply}
           </a>
         </nav>
 
@@ -83,7 +112,7 @@ export const Header: React.FC = () => {
         <button
           className="md:hidden p-2 text-sage-800"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          aria-label="Menu"
+          aria-label={t.nav.menu}
         >
           {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} color={isScrolled ? '#324541' : '#324541'} />}
         </button>
@@ -112,6 +141,24 @@ export const Header: React.FC = () => {
             {link.name}
           </a>
         ))}
+
+        <div className="flex items-center gap-3 mt-2">
+          {languageOptions.map((option) => (
+            <button
+              key={option}
+              type="button"
+              onClick={() => setLanguage(option)}
+              className={`rounded-full border px-4 py-2 text-sm font-semibold tracking-[0.2em] ${
+                language === option
+                  ? 'border-gold-500 bg-gold-500 text-white'
+                  : 'border-sage-200 text-sage-700'
+              }`}
+            >
+              {languageLabels[option]}
+            </button>
+          ))}
+        </div>
+
         <Heart className="text-gold-500 mt-8" size={32} fill="#d4af37" />
       </div>
     </header>
