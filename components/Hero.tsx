@@ -38,7 +38,7 @@ export const Hero: React.FC<HeroProps> = ({ t }) => {
   };
 
   return (
-    <section id="home" className="relative h-screen flex items-center justify-center overflow-hidden bg-sage-900">
+    <section id="home" className="relative min-h-[92vh] md:h-screen flex items-center justify-center overflow-hidden bg-sage-900 pt-24 md:pt-0 pb-16 md:pb-0">
       {/* Background Slideshow */}
       {backgroundImages.map((backgroundImage, index) => (
         <div
@@ -55,7 +55,7 @@ export const Hero: React.FC<HeroProps> = ({ t }) => {
 
       {/* Content */}
       <div 
-        className="relative z-10 text-center px-4 max-w-4xl mx-auto text-white"
+        className="relative z-10 text-center px-4 max-w-4xl mx-auto text-white pt-6 md:pt-0"
       >
         <p className="text-lg md:text-2xl uppercase tracking-[0.3em] mb-4 font-light text-white/90 drop-shadow-sm">
           {t.hero.announcement}
@@ -76,7 +76,7 @@ export const Hero: React.FC<HeroProps> = ({ t }) => {
         </div>
 
         {/* Countdown Component */}
-        <div className="bg-white/10 backdrop-blur-md rounded-xl p-6 md:p-8 border border-white/20 inline-block shadow-2xl">
+        <div className="bg-white/10 backdrop-blur-md rounded-xl p-5 md:p-8 border border-white/20 inline-block shadow-2xl max-w-[92vw]">
           <Countdown targetDate="2026-06-20T14:00:00" labels={t.hero.countdownLabels} />
         </div>
       </div>
@@ -85,7 +85,7 @@ export const Hero: React.FC<HeroProps> = ({ t }) => {
       <a 
         href="#program"
         onClick={scrollToProgram}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce text-white/80 hover:text-white transition-colors cursor-pointer z-20"
+        className="absolute bottom-6 md:bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce text-white/80 hover:text-white transition-colors cursor-pointer z-20"
         aria-label={t.hero.scrollLabel}
       >
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
