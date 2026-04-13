@@ -60,7 +60,9 @@ export const Header: React.FC<HeaderProps> = ({ language, setLanguage, t }) => {
             onClick={(e) => scrollToSection(e, 'home')}
             className="flex items-center gap-2 group"
         >
-          <span className={`font-serif text-2xl md:text-3xl font-bold tracking-wide transition-colors ${isScrolled ? 'text-sage-800' : 'text-sage-800 md:text-white'}`}>
+          <span className={`font-serif text-2xl md:text-3xl font-bold tracking-wide transition-colors drop-shadow-sm ${
+            isScrolled ? 'text-sage-800' : 'text-white md:text-white'
+          }`}>
             Clara <span className="text-gold-500">&</span> Corentin
           </span>
         </a>
@@ -110,11 +112,11 @@ export const Header: React.FC<HeaderProps> = ({ language, setLanguage, t }) => {
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden p-2 text-sage-800"
+          className={`md:hidden p-2 ${isScrolled ? 'text-sage-800' : 'text-white'}`}
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           aria-label={t.nav.menu}
         >
-          {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} color={isScrolled ? '#324541' : '#324541'} />}
+          {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} color={isScrolled ? '#324541' : '#ffffff'} />}
         </button>
       </div>
 
