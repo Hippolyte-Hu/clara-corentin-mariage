@@ -20,6 +20,18 @@ export const Header: React.FC<HeaderProps> = ({ language, setLanguage, t }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMobileMenuOpen]);
+
   const navLinks = [
     { name: t.nav.home, id: 'home' },
     { name: t.nav.program, id: 'program' },
@@ -122,7 +134,7 @@ export const Header: React.FC<HeaderProps> = ({ language, setLanguage, t }) => {
 
       {/* Mobile Navigation Overlay */}
       <div
-        className={`md:hidden fixed inset-0 bg-white z-40 flex flex-col items-center justify-center space-y-8 transition-transform duration-300 ease-in-out ${
+        className={`md:hidden fixed inset-0 bg-white z-40 flex flex-col items-center justify-center space-y-8 overflow-y-auto px-6 transition-transform duration-300 ease-in-out ${
           isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
